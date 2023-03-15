@@ -14,7 +14,7 @@ nmap -sT 10.10.10.0/23
 nmap -sS 10.10.10.0/23
 
 - FIN Scan
--- Turn-on the FINISH flag and mointor behavior: Open + Linux: Server doesn't respond; Closed + Linux: Server sends RST
+-- Turn-on the FINISH flag and monitor behavior: Open + Linux: Server doesn't respond; Closed + Linux: Server sends RST
 nmap -sF 10.10.10.0/23
 
 - Christmas Scan
