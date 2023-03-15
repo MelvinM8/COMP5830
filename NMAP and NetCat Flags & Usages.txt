@@ -1,0 +1,33 @@
+NMAP and NetCat Flags & Usages:
+
+- Host Discovery
+-- To identify hosts on a network without conducting a full port scan, a scanner can be configured to only identify live hosts through network protocols
+nmap -sn 20.10.10.0/24
+*256 addresses in a /24
+
+- TCP Connect Scan
+-- Conducts entire three-way TCP handshake process to determine if open or closed
+nmap -sT 10.10.10.0/23
+
+- Stealth Scan
+-- Uses a single SYN packet to interrogate the server
+nmap -sS 10.10.10.0/23
+
+- FIN Scan
+-- Turn-on the FINISH flag and mointor behavior: Open + Linux: Server doesn't respond; Closed + Linux: Server sends RST
+nmap -sF 10.10.10.0/23
+
+- Christmas Scan
+-- Turns-on the FIN+PSH=URG flags and monitors response
+nmap -sX 10.10.10.0/23
+
+- Null Scan
+-- Turns-off all TCP flags and monitors response: Open + Linux: Server doesn't respond; Closed + Linux: Server sends RST
+nmap -sN 10.10.10.0/23
+
+- Additional Scan Options for nmap
+-- Operating System Scan (-O)
+-- Software Version Scan (-sV)
+-- Vulnerability Scan (-sC, -script=scriptName)
+-- Specify Ports (-p)
+-- Timing (-Tx)
