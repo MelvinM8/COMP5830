@@ -1,0 +1,4 @@
+Dirbuster Instructions:
+
+- Dirbuster brute forces directories and file names on web/application servers. It will find different openings
+dirb https://10.129.227.171/cms/
