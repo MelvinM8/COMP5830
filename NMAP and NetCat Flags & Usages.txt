@@ -2,7 +2,7 @@ NMAP and NetCat Flags & Usages:
 
 - Host Discovery
 -- To identify hosts on a network without conducting a full port scan, a scanner can be configured to only identify live hosts through network protocols
-nmap -sn 20.10.10.0/24
+nmap -sn 10.10.10.0/24
 *256 addresses in a /24
 
 - TCP Connect Scan
